@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Weather</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div id="hero" class="before glass ">
+        <div class="hedder">
+                <input type="text" placeholder="Enter the location" class="searchbar glassItem">
+                <button class="btn glassItem"><img src="res/search.svg" alt=""></button>
+        </div>
+        <div class="noData">
+        </div>
+        <div class="mainBody hidden">
+            <div class="cityName ">
+                Kolkata
+            </div>
+            <div class="weatherBox  ">
+
+                <div class="icon"><img src="res/animated/cloudy-day-2.svg" alt=""></div>
+                <div class="text">
+                    <p id="para1"><span class="temp">0</span><span>°C</span></p>
+                    <p id="para2">Feels like <span class="feelsLike">0</span><span>°C</span></p>
+                    <p id="des">clear</p>
+                </div>
+        
+            </div>
+            <div class="others ">
+                <div class="humidity other">
+                    <img src="res/humidity.svg" alt="">
+                    <p class="humidityData">10%</p>
+                    <p>Humidity</p>
+                </div>
+                <div class="wind other">
+                    <img src="res/wind.svg" alt="">
+                    <p><span class="windData">10</span>km/H</p>
+                    <p>Wind</p>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
