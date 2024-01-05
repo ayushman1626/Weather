@@ -42,9 +42,6 @@ function updateDetails(data){
 
 function getWeather(url_){
     const weather = fetch(url_);
-
-function getWeather(){
-    const weather = fetch(url);
     weather.then((response)=>{
         return response.json();
     }).then((data)=>{
