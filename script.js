@@ -64,10 +64,4 @@ input.addEventListener("keypress", function(event) {
       // Trigger the button element with a click
       btn.click();
     }
-  });
-
-function getRandomColor() {
-    // Generate a random color in hexadecimal format
-    return '#' + Math.floor(Math.random()*16777215).toString(16);
-}
-
+});
