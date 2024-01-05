@@ -82,6 +82,7 @@ function getWeather(url_){
 btn.addEventListener("click",()=>{
     url = `https://api.openweathermap.org/data/2.5/weather?q=${input.value}&appid=${key}&units=metric`
     console.log(url);
+    dateTime.innerText = '';
     getWeather(url);
 })
 
