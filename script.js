@@ -11,6 +11,7 @@ const hero = document.querySelector("#hero")
 const cityName = document.querySelector(".cityName")
 const mainBody = document.querySelector(".mainBody")
 const noData = document.querySelector(".noData")
+const dateTime = document.querySelector("#dateTime")
 
 var key = "5120054d17d61e3b50da1d4b3737bded";
 var url = ``;
@@ -20,6 +21,31 @@ var lat;var lon;
 const imgCollect = {
     _01d : "clearSun", _01n: "clearMoon", _02d: "cloudDay", _02n: "cloudNight",_03d : "cloudDay", _03n: "cloudNight", _04d:"cloudDay", _04n: "cloudNight",_09d : "rainDay", _09n: "rain", _10d: "rainDay", _10n: "rain",_11d : "",_11n: "thunder", _13d: "snowDay", _13n: "snow",_50d : "clearSun",_50n : "clearMoon",
 }
+
+const weekdayCollect = {
+    0:"Sun", 1:"Mon", 2:"Tues",3:"Wed",4:"Thus",5:"Fri",6:"Sat"
+}
+const monthCollect = {
+    0:"Jan", 1:"Feb", 2:"Mar",3:"Apr",4:"May",5:"Jun",6:"Jul", 7:"Aug", 8:"Sep", 9:"Oct", 10:"Nov",11:"Dec"
+}
+
+function displayDate(time_stamp){
+    const dateDetail = new Date(time_stamp);
+    console.log(dateDetail.getSeconds());
+    var day = dateDetail.getDay();
+    var month = dateDetail.getMonth();
+    var date = dateDetail.getDate();
+    var hr = dateDetail.getHours();
+    var min = dateDetail.getMinutes();
+    if(hr>"12"){
+        var time = `${hr-12}:${min}PM`
+    }else{
+        time = `${hr}:${min}AM`
+    }
+    var allDetail = `${weekdayCollect[day]},${date} ${monthCollect[month]},${time}`;
+    dateTime.innerText = allDetail;
+}
+
 var isclicked = false;
 function updateDetails(data){
         if(!isclicked){
@@ -59,13 +85,14 @@ btn.addEventListener("click",()=>{
     getWeather(url);
 })
 
+
 locationBtn.addEventListener("click",async ()=>{
     navigator.geolocation.getCurrentPosition((location)=>{
         console.log(location);
         lat = location.coords.latitude;
         lon = location.coords.longitude;
-        console.log(lat);
-        console.log(lon);
+        const time__stamp = location.timestamp;
+        displayDate(time__stamp)
         url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`
         getWeather(url);
     },
@@ -76,9 +103,7 @@ locationBtn.addEventListener("click",async ()=>{
 })
 
 input.addEventListener("keypress", function(event) {
-    // If the user presses the "Enter" key on the keyboard
     if (event.key === "Enter") {
-      // Trigger the button element with a click
       btn.click();
     }
 });

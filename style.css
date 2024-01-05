@@ -109,6 +109,9 @@ button:hover{
 #para2{
     font-size: 15px;
 }
+#dateTime{
+    font-size: 13px;
+}
 .weatherBox {
     display: flex;
     align-items: center;
