@@ -1,5 +1,6 @@
 const input = document.querySelector(".searchbar");
 const btn = document.querySelector(".btn");
+const locationBtn = document.querySelector(".locationBtn");
 const weatherImg = document.querySelector(".icon");
 const temp = document.querySelector(".temp");
 const humidity = document.querySelector(".humidityData");
@@ -11,9 +12,9 @@ const cityName = document.querySelector(".cityName")
 const mainBody = document.querySelector(".mainBody")
 const noData = document.querySelector(".noData")
 
-var key = `5120054d17d61e3b50da1d4b3737bded`;
+var key = "5120054d17d61e3b50da1d4b3737bded";
 var url = ``;
-
+var lat;var lon;
 // https://api.openweathermap.org/data/2.5/weather?lat=57&lon=-2.15&appid={API key}&units=metric
 
 const imgCollect = {
@@ -39,8 +40,8 @@ function updateDetails(data){
         cityName.innerText = data.name;
 }
 
-function getWeather(){
-    const weather = fetch(url);
+function getWeather(url_){
+    const weather = fetch(url_);
     weather.then((response)=>{
         return response.json();
     }).then((data)=>{
@@ -55,7 +56,23 @@ function getWeather(){
 btn.addEventListener("click",()=>{
     url = `https://api.openweathermap.org/data/2.5/weather?q=${input.value}&appid=${key}&units=metric`
     console.log(url);
-    getWeather();
+    getWeather(url);
+})
+
+locationBtn.addEventListener("click",async ()=>{
+    navigator.geolocation.getCurrentPosition((location)=>{
+        console.log(location);
+        lat = location.coords.latitude;
+        lon = location.coords.longitude;
+        console.log(lat);
+        console.log(lon);
+        url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`
+        getWeather(url);
+    },
+    ()=>{
+
+    }
+    )
 })
 
 input.addEventListener("keypress", function(event) {

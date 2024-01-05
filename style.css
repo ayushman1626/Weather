@@ -65,7 +65,7 @@ body{
 }
 input{
 
-    width: 65%;
+    width: 50%;
     height: 30px;
     padding: 5px;
     border-radius: 15px;
@@ -76,7 +76,7 @@ input{
     font-weight: 700;
     color: rgba(0, 0, 0, 0.489);
 }
-button{
+.btn2{
     display: flex;
     justify-content: center;
     align-items: center;
