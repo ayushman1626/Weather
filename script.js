@@ -81,4 +81,4 @@ input.addEventListener("keypress", function(event) {
       // Trigger the button element with a click
       btn.click();
     }
-  });
+});
