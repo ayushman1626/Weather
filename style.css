@@ -89,22 +89,6 @@ button{
 button:hover{
     box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
 }
-
-.noDataSpec{
-    height: 420px;
-    width: 100%;
-    display: flex;
-    justify-content: center;
-}
-.noData img{
-    width: 250px;
-    height: 250px;
-    border-radius: 20px;
-    margin-top: 50px;
-    object-fit: cover;
-}
-
-
 .cityName{
     margin-top: 25px;
     width: 100%;

@@ -39,15 +39,6 @@ function updateDetails(data){
         cityName.innerText = data.name;
 }
 
-// function notFound(error){
-//     hero.classList.remove("before");
-//     hero.classList.add("container");
-//     noData.classList.add("noDataSpec");
-//     noData.innerHTML = "<img src='res/noData.jpg' alt=''>";
-//     mainBody.classList.add("hidden")
-//     console.log(error);
-// }
-
 function getWeather(){
     const weather = fetch(url);
     weather.then((response)=>{
@@ -80,17 +71,3 @@ function getRandomColor() {
     return '#' + Math.floor(Math.random()*16777215).toString(16);
 }
 
-
-// let color2 = getRandomColor();
-// let color1 = getRandomColor();
-// setInterval(()=>{
-//     var color1 = getRandomColor();
-//         document.body.style.background = `linear-gradient(160deg, ${color1}, ${color2})`;
-// },2000)
-
-// setTimeout(() => {
-//     setInterval(()=>{
-//        let color2 = getRandomColor();
-//         document.body.style.background = `linear-gradient(160deg, ${color1}, ${color2})`;
-//     },2000)
-// }, 500);
