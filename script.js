@@ -11,7 +11,8 @@ const cityName = document.querySelector(".cityName")
 const mainBody = document.querySelector(".mainBody")
 const noData = document.querySelector(".noData")
 
-const key = "5120054d17d61e3b50da1d4b3737bded";
+require('dotenv').config();
+var key = process.env.api_key;
 var url = ``;
 
 // https://api.openweathermap.org/data/2.5/weather?lat=57&lon=-2.15&appid={API key}&units=metric
