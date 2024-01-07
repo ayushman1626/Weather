@@ -1,47 +1,130 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Weather</title>
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
-    <div id="hero" class="before glass ">
-        <div class="hedder">
-                <input type="text" placeholder="Enter the location" class="searchbar glassItem">
-                <button class="btn btn2 glassItem"><img src="res/search.svg" alt=""></button>
-                <button class="locationBtn btn2 glassItem"><img style="width: 18px;" src="res/location.svg" alt=""></button>
-        </div>
-        <div class="mainBody hidden">
-            <div class="cityName ">
-                Kolkata
-            </div>
-            <div class="weatherBox  ">
 
-                <div class="icon"><img src="res/animated/cloudy-day-2.svg" alt=""></div>
-                <div class="text">
-                    <p id="para1"><span class="temp">0</span><span>°C</span></p>
-                    <p id="para2">Feels like <span class="feelsLike">0</span><span>°C</span></p>
-                    <p id="des">clear</p>
-                    <p id = "dateTime">Sat,6 Jan,1:16AM</p>
-                </div>
-        
+<body>
+    <div id="hero" class=" glass container">
+        <div class="hedder">
+            <input type="text" placeholder="Enter the location" class="searchbar glassItem">
+            <button class="btn btn2 glassItem"><img src="res/search.svg" alt=""></button>
+            <button class="locationBtn btn2 glassItem"><img style="width: 18px;" src="res/location.svg" alt="">
+            </button>
+        </div>
+        <div class="mainBody">
+            <div class="cityName">
+                <p class="city-name">Kolkata</p><span class="country">India</span><span class="dates">Sat,6 Jan,1:16AM</span>
             </div>
-            <div class="others ">
-                <div class="humidity other">
-                    <img src="res/humidity.svg" alt="">
-                    <p class="humidityData">10%</p>
-                    <p>Humidity</p>
+            <div class="weatherContent">
+                <div class="tempInfo">
+                    <div class="icon"><img src="res/icons/day/113.png" alt="icon"></div>
+                    <div class="text">
+                        <p id="para1"><span class="temp_">10</span><sup>°C</sup></p>
+                        <p id="para2">Feels like <span class="feelsLike">10</span><span> °C</span></p>
+                    </div>
                 </div>
-                <div class="wind other">
-                    <img src="res/wind.svg" alt="">
-                    <p><span class="windData">10</span>km/H</p>
-                    <p>Wind</p>
+                <div class="otherData">
+                    <p class="wea">Weather</p>
+                    <p class="messege">Cear</p>
+                    <p>Precipitation: <span class="PreData">0</span>%</p>
+                    <p>Humidity: <span class="humidityData">65</span>%</p>
+                    <p>Wind: <span class="windData">10 </span>km/h</p>
                 </div>
+            </div>
+        </div>
+        <div class="boxes">
+            <div class="box glassItem">
+                <p>Mon</p>
+                <img src="res/icons/day/113.png" alt="">
+                <p>28°,10°</p>
+                <p>01 Jan</p>
+            </div>
+            <div class="box glassItem">
+                <p>Mon</p>
+                <img src="res/icons/day/113.png" alt="">
+                <p>28°,10°</p>
+                <p>01 Jan</p>
+            </div>
+            <div class="box glassItem">
+                <p>Mon</p>
+                <img src="res/icons/day/113.png" alt="">
+                <p>28°,10°</p>
+                <p>01 Jan</p>
+            </div>
+            <div class="box glassItem">
+                <p>Mon</p>
+                <img src="res/icons/day/113.png" alt="">
+                <p>28°,10°</p>
+                <p>01 Jan</p>
+            </div>
+            <div class="box glassItem">
+                <p>Mon</p>
+                <img src="res/icons/day/113.png" alt="">
+                <p>28°,10°</p>
+                <p>01 Jan</p>
+            </div>
+            <div class="box glassItem">
+                <p>Mon</p>
+                <img src="res/icons/day/113.png" alt="">
+                <p>28°,10°</p>
+                <p>01 Jan</p>
+            </div>
+            <div class="box glassItem">
+                <p>Mon</p>
+                <img src="res/icons/day/113.png" alt="">
+                <p>28°,10°</p>
+                <p>01 Jan</p>
+            </div>
+            <div class="box glassItem">
+                <p>Mon</p>
+                <img src="res/icons/day/113.png" alt="">
+                <p>28°,10°</p>
+                <p>01 Jan</p>
+            </div>
+            <div class="box glassItem">
+                <p>Mon</p>
+                <img src="res/icons/day/113.png" alt="">
+                <p>28°,10°</p>
+                <p>01 Jan</p>
+            </div>
+            <div class="box glassItem">
+                <p>Mon</p>
+                <img src="res/icons/day/113.png" alt="">
+                <p>28°,10°</p>
+                <p>01 Jan</p>
+            </div>
+            <div class="box glassItem">
+                <p>Mon</p>
+                <img src="res/icons/day/113.png" alt="">
+                <p>28°,10°</p>
+                <p>01 Jan</p>
+            </div>
+            <div class="box glassItem">
+                <p>Mon</p>
+                <img src="res/icons/day/113.png" alt="">
+                <p>28°,10°</p>
+                <p>01 Jan</p>
+            </div>
+            <div class="box glassItem">
+                <p>Mon</p>
+                <img src="res/icons/day/113.png" alt="">
+                <p>28°,10°</p>
+                <p>01 Jan</p>
+            </div>
+            <div class="box glassItem">
+                <p>Mon</p>
+                <img src="res/icons/day/113.png" alt="">
+                <p>28°,10°</p>
+                <p>01 Jan</p>
             </div>
         </div>
     </div>
     <script src="script.js"></script>
 </body>
+
 </html>

@@ -2,26 +2,41 @@ const input = document.querySelector(".searchbar");
 const btn = document.querySelector(".btn");
 const locationBtn = document.querySelector(".locationBtn");
 const weatherImg = document.querySelector(".icon");
-const temp = document.querySelector(".temp");
-const humidity = document.querySelector(".humidityData");
-const windData = document.querySelector(".windData");
+const cityName = document.querySelector(".city-name")
+const temp = document.querySelector(".temp_")
 const feelslike = document.querySelector(".feelsLike");
-const des = document.querySelector("#des");
-const hero = document.querySelector("#hero")
-const cityName = document.querySelector(".cityName")
-const mainBody = document.querySelector(".mainBody")
-const noData = document.querySelector(".noData")
-const dateTime = document.querySelector("#dateTime")
+const humidityData = document.querySelector(".humidityData");
+const PreData = document.querySelector(".PreData");
+const windData = document.querySelector(".windData");
+const messege = document.querySelector(".messege");
+const dates = document.querySelector(".dates");
+const country = document.querySelector(".country");
+const boxes = document.querySelectorAll(".box");
+var api_data = {};
 
-var key = "5120054d17d61e3b50da1d4b3737bded";
-var url = ``;
-var lat;var lon;
-// https://api.openweathermap.org/data/2.5/weather?lat=57&lon=-2.15&appid={API key}&units=metric
 
-const imgCollect = {
-    _01d : "clearSun", _01n: "clearMoon", _02d: "cloudDay", _02n: "cloudNight",_03d : "cloudDay", _03n: "cloudNight", _04d:"cloudDay", _04n: "cloudNight",_09d : "rainDay", _09n: "rain", _10d: "rainDay", _10n: "rain",_11d : "",_11n: "thunder", _13d: "snowDay", _13n: "snow",_50d : "clearSun",_50n : "clearMoon",
+
+
+const key = "1c5f2edc6a0c4083a64155925240601"
+var lat;var lon;var url;
+
+function updateBox2(box,data){    
+    let img = data.day.condition.icon.slice(35,42);
+    let maxTemp = data.day.maxtemp_c;
+    let minTemp = data.day.mintemp_c;
+    let dateDetail = new Date(data.date);
+    let day = weekdayCollect[dateDetail.getDay()];
+    let month = monthCollect[dateDetail.getMonth()];
+    let date = dateDetail.getDate();
+
+    box.innerHTML = `<p>${day}</p><img src='res/icons/${img}.png' alt=''><p>${maxTemp}°,${minTemp}°</p><p>${date} ${month}</p>`
 }
 
+function UpdateBox1(data){
+    for(let i = 0; i<boxes.length; i++){
+        updateBox2(boxes[i],data.forecast.forecastday[i]);
+    }
+}
 const weekdayCollect = {
     0:"Sun", 1:"Mon", 2:"Tues",3:"Wed",4:"Thus",5:"Fri",6:"Sat"
 }
@@ -30,40 +45,31 @@ const monthCollect = {
 }
 
 function displayDate(time_stamp){
-    const dateDetail = new Date(time_stamp);
+    const dateDetail = new Date(time_stamp.slice(0,10));
     console.log(dateDetail.getSeconds());
     var day = dateDetail.getDay();
     var month = dateDetail.getMonth();
     var date = dateDetail.getDate();
-    var hr = dateDetail.getHours();
-    var min = dateDetail.getMinutes();
-    if(hr>"12"){
-        var time = `${hr-12}:${min}PM`
-    }else{
-        time = `${hr}:${min}AM`
-    }
-    var allDetail = `${weekdayCollect[day]},${date} ${monthCollect[month]},${time}`;
-    dateTime.innerText = allDetail;
+    var time = time_stamp.slice((time_stamp.length-5),time_stamp.length);
+    var allDetail = `${weekdayCollect[day]}, ${date} ${monthCollect[month]}, ${time}`;
+    dates.innerText = allDetail;
 }
 
-var isclicked = false;
+
 function updateDetails(data){
-        if(!isclicked){
-            hero.classList.remove("before");
-            hero.classList.add("container");
-            mainBody.classList.remove("hidden")
-            isclicked = true;
-        }else{
-            isclicked = false;
-        }
-        temp.innerText = data.main.temp;
-        humidity.innerText = data.main.humidity+"%";
-        feelslike.innerText = data.main.feels_like;
-        windData.innerText = data.wind.speed;
-        weatherImg.innerHTML = `<img src="res/animated/${imgCollect["_"+data.weather[0].icon]}.svg" alt=""></img>`
-        des.innerText = data.weather[0].description;
-        console.log(imgCollect["_"+data.weather[0].icon]);
-        cityName.innerText = data.name;
+    console.log(data.forecast.forecastday[0].day.daily_chance_of_rain);
+        temp.innerText = data.current.temp_c;
+        cityName.innerText = data.location.name;
+        weatherImg.innerHTML = `<img src='res/icons/${data.current.condition.icon.slice(35,42)}.png'alt=''>`;
+        console.log(`<img src='res/icons/${data.current.condition.icon.slice(35,44)}.png'alt=''>`);
+        messege.innerText = data.current.condition.text;
+        feelslike.innerText = data.current.feelslike_c;
+        humidityData.innerText = data.current.humidity;
+        PreData.innerText = data.forecast.forecastday[0].day.daily_chance_of_rain;
+        windData.innerText = data.current.wind_kph;
+        country.innerText = data.location.country;
+        displayDate(data.location.localtime);
+        UpdateBox1(data);
 }
 
 function getWeather(url_){
@@ -73,34 +79,38 @@ function getWeather(url_){
     }).then((data)=>{
         updateDetails(data);
         console.log(data);
+        api_data = data;
     }).catch((error)=>{
-        notFound(error);
         console.log(error);
     })
 }
 
-btn.addEventListener("click",()=>{
-    url = `https://api.openweathermap.org/data/2.5/weather?q=${input.value}&appid=${key}&units=metric`
-    console.log(url);
-    dateTime.innerText = '';
-    getWeather(url);
-})
 
-
-locationBtn.addEventListener("click",async ()=>{
+function getLatlon(){
     navigator.geolocation.getCurrentPosition((location)=>{
         console.log(location);
         lat = location.coords.latitude;
         lon = location.coords.longitude;
-        const time__stamp = location.timestamp;
-        displayDate(time__stamp)
-        url = `https://api.openweathermap.org/data/2.5/weather?lat=${lat}&lon=${lon}&appid=${key}&units=metric`
+        url = `http://api.weatherapi.com/v1/forecast.json?key=${key}&q=${lat},${lon}&days=14`
         getWeather(url);
     },
     ()=>{
 
     }
     )
+}
+
+btn.addEventListener("click",()=>{
+    url = `http://api.weatherapi.com/v1/forecast.json?key=${key}&q=${input.value}&days=14`
+    console.log(url);
+    getWeather(url);
+})
+
+locationBtn.addEventListener("click",async ()=>{
+    getLatlon();
+})
+window.addEventListener("DOMContentLoaded",async ()=>{
+    getLatlon();
 })
 
 input.addEventListener("keypress", function(event) {
@@ -108,3 +118,17 @@ input.addEventListener("keypress", function(event) {
       btn.click();
     }
 });
+
+
+
+boxes.forEach((box,index) => {
+    box.addEventListener("click",()=>{
+        updateForecast(box,index);
+    })
+});
+
+function updateForecast(box,index){
+    let data = api_data.forecast.forecastday[index];
+    temp.innerText = data.day.avgtemp_c;
+}
+
