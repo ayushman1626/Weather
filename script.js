@@ -91,7 +91,7 @@ function getLatlon(){
         console.log(location);
         lat = location.coords.latitude;
         lon = location.coords.longitude;
-        url = `http://api.weatherapi.com/v1/forecast.json?key=${key}&q=${lat},${lon}&days=14`
+        url = `https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${lat},${lon}&days=14`
         getWeather(url);
     },
     ()=>{
@@ -101,7 +101,7 @@ function getLatlon(){
 }
 
 btn.addEventListener("click",()=>{
-    url = `http://api.weatherapi.com/v1/forecast.json?key=${key}&q=${input.value}&days=14`
+    url = `https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${input.value}&days=14`
     console.log(url);
     getWeather(url);
 })
