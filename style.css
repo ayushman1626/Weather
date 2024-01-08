@@ -29,11 +29,10 @@
 
 body{
     background: linear-gradient(160deg, rgb(212, 93, 23), rgb(30, 166, 184));
-    min-height: 100vh;
+    min-height: 100dvh;
     display: flex;
     justify-content: center;
     align-items: center;
-    transition: background 1s ease;
 }
 .container{
     margin:10px;
