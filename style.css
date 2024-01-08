@@ -36,7 +36,7 @@ body{
     display: flex;
     justify-content: center;
     align-items: center;
-    color: rgba(255, 255, 255, 0.671);
+    color: rgba(255, 255, 255, 0.89);
 }
 .container{
     margin:10px;
