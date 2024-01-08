@@ -24,7 +24,7 @@ const key = "1c5f2edc6a0c4083a64155925240601"
 var lat;var lon;var url;
 
 function updateBox2(box,data){    
-    let img = data.day.condition.icon.slice(35,42);
+    let img = data.day.condition.icon;
     let maxTemp = data.day.maxtemp_c;
     let minTemp = data.day.mintemp_c;
     let dateDetail = new Date(data.date);
@@ -32,7 +32,7 @@ function updateBox2(box,data){
     let month = monthCollect[dateDetail.getMonth()];
     let date = dateDetail.getDate();
 
-    box.innerHTML = `<p>${day}</p><img src='res/icons/${img}.png' alt=''><p>${maxTemp}°,${minTemp}°</p><p>${date} ${month}</p>`
+    box.innerHTML = `<p>${day}</p><img src='${img}' alt=''><p>${maxTemp}°,${minTemp}°</p><p>${date} ${month}</p>`
 }
 
 function UpdateBox1(data){
@@ -63,8 +63,8 @@ function updateDetails(data){
     console.log(data.forecast.forecastday[0].day.daily_chance_of_rain);
         temp.innerText = data.current.temp_c;
         cityName.innerText = data.location.name;
-        weatherImg.innerHTML = `<img src='res/icons/${data.current.condition.icon.slice(35,42)}.png'alt=''>`;
-        console.log(`<img src='res/icons/${data.current.condition.icon.slice(35,42)}.png'alt=''>`);
+        weatherImg.innerHTML = `<img src='${data.current.condition.icon}'alt=''>`;
+        console.log(data.current.condition.icon);
         messege.innerText = data.current.condition.text;
         feelslike.innerText = data.current.feelslike_c;
         humidityData.innerText = data.current.humidity;
