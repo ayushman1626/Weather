@@ -12,6 +12,9 @@ const messege = document.querySelector(".messege");
 const dates = document.querySelector(".dates");
 const country = document.querySelector(".country");
 const boxes = document.querySelectorAll(".box");
+const allData = document.querySelector(".allData")
+const loadingScreen = document.getElementById("loadingScreen");
+const noDataScreen = document.getElementById("no-Data");
 var api_data = {};
 
 
@@ -74,12 +77,17 @@ function updateDetails(data){
 
 function getWeather(url_){
     const weather = fetch(url_);
+    noDataScreen.style.display = "none";
+    loadingScreen.style.display = "flex";
+    allData.classList.add("hidden");
     weather.then((response)=>{
         return response.json();
     }).then((data)=>{
         updateDetails(data);
         console.log(data);
         api_data = data;
+        loadingScreen.style.display = "none";
+        allData.classList.remove("hidden");
     }).catch((error)=>{
         console.log(error);
     })
