@@ -75,6 +75,11 @@ function updateDetails(data){
         UpdateBox1(data);
 }
 
+function displayError(){
+    noDataScreen.style.display = "flex";
+    loadingScreen.style.display = "none";
+    noDataScreen.innerHTML = "<p>No data</p><p>There is some problem</p><p>Please enter a valid Location</p>"
+}
 function getWeather(url_){
     const weather = fetch(url_);
     noDataScreen.style.display = "none";
@@ -90,6 +95,9 @@ function getWeather(url_){
         allData.classList.remove("hidden");
     }).catch((error)=>{
         console.log(error);
+        console.log("Error");
+        allData.classList.add("hidden");
+        displayError();
     })
 }
 
@@ -103,6 +111,7 @@ function getLatlon(){
         getWeather(url);
     },
     ()=>{
+        noDataScreen.innerHTML = "<p>No data</p><p>Please Check location Permission</p><p>Or search by the location</p>"
         console.log("Error");
         allData.classList.add("hidden");
         noDataScreen.style.display = "flex";
