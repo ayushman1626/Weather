@@ -103,7 +103,9 @@ function getLatlon(){
         getWeather(url);
     },
     ()=>{
-
+        console.log("Error");
+        allData.classList.add("hidden");
+        noDataScreen.style.display = "flex";
     }
     )
 }
