@@ -127,8 +127,8 @@ boxes.forEach((box,index) => {
     })
 });
 
-function updateForecast(box,index){
-    let data = api_data.forecast.forecastday[index];
-    temp.innerText = data.day.avgtemp_c;
-}
+// function updateForecast(box,index){
+//     let data = api_data.forecast.forecastday[index];
+//     temp.innerText = data.day.avgtemp_c;
+// }
 
