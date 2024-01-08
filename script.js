@@ -61,7 +61,7 @@ function updateDetails(data){
         temp.innerText = data.current.temp_c;
         cityName.innerText = data.location.name;
         weatherImg.innerHTML = `<img src='res/icons/${data.current.condition.icon.slice(35,42)}.png'alt=''>`;
-        console.log(`<img src='res/icons/${data.current.condition.icon.slice(35,44)}.png'alt=''>`);
+        console.log(`<img src='res/icons/${data.current.condition.icon.slice(35,42)}.png'alt=''>`);
         messege.innerText = data.current.condition.text;
         feelslike.innerText = data.current.feelslike_c;
         humidityData.innerText = data.current.humidity;
