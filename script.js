@@ -15,6 +15,7 @@ const boxes = document.querySelectorAll(".box");
 const allData = document.querySelector(".allData")
 const loadingScreen = document.getElementById("loadingScreen");
 const noDataScreen = document.getElementById("no-Data");
+const boxesContainer = document.querySelector(".boxes");
 var api_data = {};
 
 
@@ -23,7 +24,7 @@ var api_data = {};
 const key = "1c5f2edc6a0c4083a64155925240601"
 var lat;var lon;var url;
 
-function updateBox2(box,data){    
+function updateBox_2(data){    
     let img = data.day.condition.icon;
     let maxTemp = data.day.maxtemp_c;
     let minTemp = data.day.mintemp_c;
@@ -32,12 +33,24 @@ function updateBox2(box,data){
     let month = monthCollect[dateDetail.getMonth()];
     let date = dateDetail.getDate();
 
-    box.innerHTML = `<p>${day}</p><img src='${img}' alt=''><p>${maxTemp}°,${minTemp}°</p><p>${date} ${month}</p>`
+    // <div class="box glassItem">
+    //     <p>${day}</p>
+    //     <img src='${img}' alt=''>
+    //     <p>${maxTemp}°,${minTemp}°</p>
+    //     <p>${date} ${month}</p>
+    // </div>
+    var fetch = boxesContainer.innerHTML;
+    boxesContainer.innerHTML = `<div class='box glassItem'>
+                                    <p>${day}</p>
+                                    <img src='${img}' alt=''>
+                                    <p>${maxTemp}°,${minTemp}°</p>
+                                    <p>${date} ${month}</p>
+                                </div>` + fetch;
 }
 
-function UpdateBox1(data){
-    for(let i = 0; i<boxes.length; i++){
-        updateBox2(boxes[i],data.forecast.forecastday[i]);
+function UpdateBox_1(data){
+    for(let i = 13; i>=0; i--){
+        updateBox_2(data.forecast.forecastday[i]);
     }
 }
 const weekdayCollect = {
@@ -72,7 +85,7 @@ function updateDetails(data){
         windData.innerText = data.current.wind_kph;
         country.innerText = data.location.country;
         displayDate(data.location.localtime);
-        UpdateBox1(data);
+        UpdateBox_1(data);
 }
 
 function displayError(){
