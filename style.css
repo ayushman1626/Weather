@@ -181,6 +181,7 @@ button:hover{
    justify-content: space-between;
    padding-left: 70px;
    padding-right: 100px;
+   padding-block: 24px;
 }
 .weatherContent .icon img{
     width: 150px;
