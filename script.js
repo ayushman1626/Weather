@@ -49,6 +49,7 @@ function updateBox_2(data){
 }
 
 function UpdateBox_1(data){
+    boxesContainer.innerHTML = "";
     for(let i = 13; i>=0; i--){
         updateBox_2(data.forecast.forecastday[i]);
     }
