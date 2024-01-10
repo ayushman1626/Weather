@@ -185,20 +185,68 @@ function upadateHourTemp(data){
     }
 }
 
- var boxes = document.querySelectorAll(".box");
-    boxes.forEach((box,index) => {
-        box.addEventListener("click",()=>{
-        updateForecast(index);
-        console.log(box);
-     })
+function updateForeRainData(data){
+    let rainChance = document.querySelector(".fore-chance-text");
+    let rainVolume = document.querySelector(".fore-totalRain-text");
+    rainChance.innerText = data.day.daily_chance_of_rain+" %";
+    rainVolume.innerText = data.day.totalprecip_mm+" mm";
+}
+
+function upadateHourRain(data){
+    let fore_rain_graph_boxes = document.querySelector(".fore-rain-graph-boxes");
+    fore_rain_graph_boxes.innerHTML = "";
+    for(let i = 23; i >=0; i--){
+        let hourData = data.hour[i];
+        var fetch = fore_rain_graph_boxes.innerHTML;
+        var height = (60/100)*(hourData.chance_of_rain);
+        fore_rain_graph_boxes.innerHTML = `<div class="fore-rain-graph-box">
+                                                <p class="graph-rain-chance">${hourData.chance_of_rain}%</p>
+                                                <div class="rain-graph-stick" style = "height :${height+20}px"></div>
+                                                <img src="${hourData.condition.icon}" alt="">
+                                                <p>${i}:00</p>
+                                                </div>` + fetch;
+    }
+}
+
+function updateForeWindData(data){
+    let MaxWindSpeed = document.querySelector(".fore-speed-text");
+    MaxWindSpeed.innerText = data.day.maxwind_kph+" km/h";
+    
+}
+
+function upadateHourWind(data){
+    let fore_wind_graph_boxes = document.querySelector(".fore-wind-graph-boxes");
+    fore_wind_graph_boxes.innerHTML = "";
+    for(let i = 23; i >=0; i--){
+        let hourData = data.hour[i];
+        var fetch = fore_wind_graph_boxes.innerHTML;
+        var height = (40/(data.day.maxwind_kph))*hourData.wind_kph;
+        fore_wind_graph_boxes.innerHTML = `<div class="fore-wind-graph-box">
+        <img src="res/arrow.svg" alt="" style="transform: rotate(${hourData.wind_degree}deg);">
+        <div class="wind-graph-stick" style = "height : ${height}px"></div>
+        <p class="graph-wind-speed">${hourData.wind_kph}</p>
+        <p class="graph-wind-time">${i}:00</p>
+    </div>` + fetch;
+    }
+}
+
+
+var boxes = document.querySelectorAll(".box");
+boxes.forEach((box,index) => {
+    box.addEventListener("click",()=>{
+    updateForecast(index);
+    console.log(index);
+    })
  });
-
-
 
 function updateForecast(index){
     // console.log(boxes[index]);
     var data = api_data.forecast.forecastday[index];
     updateForeTempData(data);
     upadateHourTemp(data);
+    updateForeRainData(data);
+    upadateHourRain(data);
+    updateForeWindData(data);
+    upadateHourWind(data);
 }
 
