@@ -92,7 +92,7 @@ function updateDetails(data){
 function displayError(){
     noDataScreen.style.display = "flex";
     loadingScreen.style.display = "none";
-    noDataScreen.innerHTML = "<p>No data</p><p>There is some problem</p><p>Please enter a valid Location</p>"
+    noDataScreen.innerHTML = "<p>No data</p><p>There is some problem</p><p>Location not Found</p>"
 }
 function getWeather(url_){
     const weather = fetch(url_);
