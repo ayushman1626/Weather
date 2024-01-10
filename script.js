@@ -11,12 +11,12 @@ const windData = document.querySelector(".windData");
 const messege = document.querySelector(".messege");
 const dates = document.querySelector(".dates");
 const country = document.querySelector(".country");
-const boxes = document.querySelectorAll(".box");
 const allData = document.querySelector(".allData")
 const loadingScreen = document.getElementById("loadingScreen");
 const noDataScreen = document.getElementById("no-Data");
 const boxesContainer = document.querySelector(".boxes");
-var api_data = {};
+var api_data = {}
+
 
 
 
@@ -104,6 +104,8 @@ function getWeather(url_){
         updateDetails(data);
         console.log(data);
         api_data = data;
+        updateForecast(0);
+        // boxes[0].classList.remove("glassItem")
         loadingScreen.style.display = "none";
         allData.classList.remove("hidden");
     }).catch((error)=>{
@@ -122,6 +124,7 @@ function getLatlon(){
         lon = location.coords.longitude;
         url = `https://api.weatherapi.com/v1/forecast.json?key=${key}&q=${lat},${lon}&days=14`
         getWeather(url);
+        
     },
     ()=>{
         noDataScreen.innerHTML = "<p>No data</p><p>Please Check location Permission</p><p>Or search by the location</p>"
@@ -141,7 +144,7 @@ btn.addEventListener("click",()=>{
 locationBtn.addEventListener("click",async ()=>{
     getLatlon();
 })
-window.addEventListener("DOMContentLoaded",async ()=>{
+window.addEventListener("load",async ()=>{
     getLatlon();
 })
 
@@ -152,15 +155,49 @@ input.addEventListener("keypress", function(event) {
 });
 
 
+function updateForeTempData(data){
+    let AvgTemp = document.querySelector(".fore-temp_");
+    let Fore_icon = document.querySelector(".fore-icon");
+    let fore_status = document.querySelector(".fore-sunny");
+    let maxTemp = document.querySelector(".fore-maxtemp-text");
+    let minTemp = document.querySelector(".fore-mintemp-text");
+    AvgTemp.innerText = data.day.avgtemp_c;
+    Fore_icon.innerHTML = `<img src=${data.day.condition.icon} alt="icon">`
+    fore_status.innerText = data.day.condition.text;
+    maxTemp.innerText = data.day.maxtemp_c+" °C";
+    minTemp.innerText = data.day.mintemp_c+" °C";
+}
 
-boxes.forEach((box,index) => {
-    box.addEventListener("click",()=>{
-        updateForecast(box,index);
-    })
-});
+function upadateHourTemp(data){
+    let fore_temp_graph_boxes = document.querySelector(".fore-temp-graph-boxes");
+    fore_temp_graph_boxes.innerHTML = "";
+    for(let i = 23; i >=0; i--){
+        let hourData = data.hour[i];
+        var fetch = fore_temp_graph_boxes.innerHTML;
+        var height = (hourData.temp_c - data.day.mintemp_c)*(60/(data.day.maxtemp_c - data.day.mintemp_c))
+        fore_temp_graph_boxes.innerHTML = `<div class="fore-temp-graph-box">
+                                                <p class="graph-temp-data">${hourData.temp_c}</p>
+                                                <div class="graph-stick" style = "height :${height+20}px"></div>
+                                                <img src="${hourData.condition.icon}" alt="">
+                                                <p>${i}:00</p>
+                                                </div>` + fetch;
+    }
+}
 
-// function updateForecast(box,index){
-//     let data = api_data.forecast.forecastday[index];
-//     temp.innerText = data.day.avgtemp_c;
-// }
+ var boxes = document.querySelectorAll(".box");
+    boxes.forEach((box,index) => {
+        box.addEventListener("click",()=>{
+        updateForecast(index);
+        console.log(box);
+     })
+ });
+
+
+
+function updateForecast(index){
+    // console.log(boxes[index]);
+    var data = api_data.forecast.forecastday[index];
+    updateForeTempData(data);
+    upadateHourTemp(data);
+}
 

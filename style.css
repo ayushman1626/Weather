@@ -236,7 +236,7 @@ button:hover{
     height: 0.7rem;
 }
 .boxes::-webkit-scrollbar-track{
-    background: rgba(0, 128, 0, 0.042);
+    background: rgba(157, 167, 157, 0.042);
 }
 .boxes::-webkit-scrollbar-thumb{
     background: rgba(255, 255, 255, 0.255);
@@ -263,6 +263,140 @@ button:hover{
 .box :hover{
     cursor: pointer;
 
+}
+
+
+.fore-cast{
+    margin: auto;
+    margin-top: 50px;
+    width: 95%;
+    /* background-color: rgba(255, 213, 0, 0.3); */
+    margin-bottom: 500px;
+    font-weight: 500;
+}
+.fore-cast-para{
+    padding-block: 30px;
+    font-size: 1.8rem;
+}
+.fore-cast:first-child span{
+    font-size: 0.8rem;
+}
+
+.fore-temp-graph{
+    height: 175px;
+    width: 100%;
+    border-radius: 10px;
+    border: 1px solid #ffffff00;
+    /* background-color: #1c804a; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.fore-temp-graph-boxes{
+    border-radius: 10px;
+    /* border: 1px solid #cd0f0f; */
+    height: calc(175px - 20px);
+    width: calc(100% - 20px);
+    display: flex;
+    gap: 2px;
+    overflow-y: scroll;
+}
+.fore-temp-graph-boxes::-webkit-scrollbar{
+    height: 0.5rem;
+    width: 0rem;
+}
+.fore-temp-graph-boxes::-webkit-scrollbar-track{
+    background: rgba(93, 100, 93, 0.042);
+}
+.fore-temp-graph-boxes::-webkit-scrollbar-thumb{
+    background: rgba(255, 255, 255, 0.255);
+    border-radius: 25rem;
+    margin-block: 30px;
+}
+
+.fore-temp-graph-box{
+    display: flex;
+    flex-direction: column;
+    justify-content:end;
+    align-items: center;
+    /* background-color: red; */
+    width: 40px;
+}
+.fore-temp-graph-box p{
+    font-size: 0.8rem;
+}
+.fore-temp-graph-box > :first-child{
+    margin-left: 3px;
+}
+
+
+.graph-stick{
+    height: 80px;
+    width: 0.8px;
+    background-color: #ffffff;
+    margin-right: 1px;
+}
+.graph-stick-2{
+    height: 40px;
+    width: 0.8px;
+    background-color: #ffffff;
+}
+.fore-temp-graph-box img{
+    width: 40px;
+}
+
+.fore-temp-data{
+    display: flex;
+    flex-direction: column;
+}
+.fore-temp-data-1{
+    padding: 20px;
+    display: flex;
+    justify-content: space-around;
+    border-radius: 10px;
+}
+.fore-temp-data-1_1{
+    text-align: center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.fore-temp_{
+    font-size: 80px;
+}
+.fore-temp-data-1_2{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    
+}
+.fore-temp-data-1_2 img{
+    width: 125px;
+}
+.fore-temp-data-1_1:first-child{
+    font-size: 1rem;
+}
+.fore-temp-data-1_1:nth-child(2) span{
+    font-size: 80px;
+}
+.fore-temp-data-2{
+    padding: 10px;
+    margin-block: 15px;
+    display: flex;
+    gap: 5px;
+    justify-content: space-evenly;
+    font-size: 0.9rem;
+    border-radius: 10px;
+}
+.fore-temp-data-2 p{
+    text-align: center;
+}
+.fore-temp-data-2:first-child , .fore-temp-data-2:nth-child(2){
+    border-radius: 5px;
 }
 
 
@@ -421,5 +555,15 @@ button:hover{
          font-size: 0.8rem;
          font-weight: 600;
      }
+
+     .fore-temp-data-2{
+        padding: 10px;
+        margin-block: 15px;
+        display: flex;
+        gap: 5px;
+        justify-content: space-evenly;
+        font-size: 0.7rem;
+        border-radius: 10px;
+    }
      
 }
