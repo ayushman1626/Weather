@@ -13,19 +13,19 @@
     display: none;
 }
 .glass{
-    background: linear-gradient(135deg, rgba(255, 255, 255, 0.1), rgba(201, 199, 199, 0));
+    background: linear-gradient(135deg, rgba(255, 255, 255, 0.055),rgba(255, 255, 255, 0.049));
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
     border-radius: 20px;
-    border:1px solid rgba(168, 163, 163, 0.18);
-    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+    /* border:1px solid rgba(168, 163, 163, 0.18); */
+    /* box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37); */
 }
 
 .glassItem{
-    background: linear-gradient(135deg,  rgba(201, 199, 199, 0), rgba(255, 255, 255, 0.1));
+    background: linear-gradient(190deg,  rgba(201, 199, 199, 0),rgb(255 255 255 / 4%));
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
-    border:1px solid rgba(115, 106, 106, 0.158);
+    /* border:1px solid rgba(115, 106, 106, 0.158); */
     box-shadow: 0 0.1px 32px 0 rgba(139, 137, 137, 0.089);
 }
 
