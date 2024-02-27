@@ -29,6 +29,14 @@
     box-shadow: 0 0.1px 32px 0 rgba(139, 137, 137, 0.089);
 }
 
+.glassItem_2{
+    background: linear-gradient(135deg,  rgba(255, 255, 255, 0), rgba(201, 199, 199, 0));
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    border:1px solid rgb(255, 255, 255);
+    box-shadow: 0 0.1px 32px 0 rgba(139, 137, 137, 0.951);
+}
+
 
 body{
     background: linear-gradient(160deg, rgb(32, 31, 31), rgb(10, 10, 10));

@@ -15,47 +15,19 @@ const allData = document.querySelector(".allData")
 const loadingScreen = document.getElementById("loadingScreen");
 const noDataScreen = document.getElementById("no-Data");
 const boxesContainer = document.querySelector(".boxes");
+const fore_cast_para = document.querySelector(".fore-cast-para");
+
 var api_data = {}
-
-
-
 
 
 // const key = "1c5f2edc6a0c4083a64155925240601"
 const key = "312313bd6f05401b93063331242702"
 
-var lat;var lon;var url;
+var lat;var lon;var url;var boxes;
 
-function updateBox_2(data){    
-    let img = data.day.condition.icon;
-    let maxTemp = data.day.maxtemp_c;
-    let minTemp = data.day.mintemp_c;
-    let dateDetail = new Date(data.date);
-    let day = weekdayCollect[dateDetail.getDay()];
-    let month = monthCollect[dateDetail.getMonth()];
-    let date = dateDetail.getDate();
 
-    // <div class="box glassItem">
-    //     <p>${day}</p>
-    //     <img src='${img}' alt=''>
-    //     <p>${maxTemp}°,${minTemp}°</p>
-    //     <p>${date} ${month}</p>
-    // </div>
-    var fetch = boxesContainer.innerHTML;
-    boxesContainer.innerHTML = `<div class='box glassItem'>
-                                    <p>${day}</p>
-                                    <img src='${img}' alt=''>
-                                    <p>${maxTemp}°,${minTemp}°</p>
-                                    <p>${date} ${month}</p>
-                                </div>` + fetch;
-}
 
-function UpdateBox_1(data){
-    boxesContainer.innerHTML = "";
-    for(let i = 13; i>=0; i--){
-        updateBox_2(data.forecast.forecastday[i]);
-    }
-}
+
 const weekdayCollect = {
     0:"Sun", 1:"Mon", 2:"Tues",3:"Wed",4:"Thus",5:"Fri",6:"Sat"
 }
@@ -64,6 +36,8 @@ const monthCollect = {
 }
 
 function displayDate(time_stamp){
+    console.log(time_stamp);
+    console.log(time_stamp.slice(0,10));
     const dateDetail = new Date(time_stamp.slice(0,10));
     console.log(dateDetail.getSeconds());
     var day = dateDetail.getDay();
@@ -233,13 +207,12 @@ function upadateHourWind(data){
 }
 
 
-// var boxes = document.querySelectorAll(".box");
-// boxes.forEach((box,index) => {
-//     box.addEventListener("click",()=>{
-//     updateForecast(index);
-//     console.log(index);
+
+// boxesContainer.querySelectorAll(".box").forEach((i) => {
+//     i.addEventListener("click", () => {
+//        console.log("pressed");
 //     })
-//  });
+// });
 
 function updateForecast(index){
     // console.log(boxes[index]);
@@ -250,5 +223,57 @@ function updateForecast(index){
     upadateHourRain(data);
     updateForeWindData(data);
     upadateHourWind(data);
+    const dateDetail_2 = new Date(data.date);
+    fore_cast_para.innerHTML= `<p class='fore-cast-para'>Forecast of <span>${dateDetail_2.getDate()}</span> <span>${monthCollect[dateDetail_2.getMonth()]}</span></p>`;
+}
+
+// Updating The forecast main boxes
+function updateBox_2(data){    
+    let img = data.day.condition.icon;
+    let maxTemp = data.day.maxtemp_c;
+    let minTemp = data.day.mintemp_c;
+    let dateDetail = new Date(data.date);
+    let day = weekdayCollect[dateDetail.getDay()];
+    let month = monthCollect[dateDetail.getMonth()];
+    let date = dateDetail.getDate();
+
+    // <div class="box glassItem">
+    //     <p>${day}</p>
+    //     <img src='${img}' alt=''>
+    //     <p>${maxTemp}°,${minTemp}°</p>
+    //     <p>${date} ${month}</p>
+    // </div>
+    var fetch = boxesContainer.innerHTML;
+    boxesContainer.innerHTML = `<div class='box glassItem' id = "BOX">
+                                    <p>${day}</p>
+                                    <img src='${img}' alt=''>
+                                    <p>${maxTemp}°,${minTemp}°</p>
+                                    <p>${date} ${month}</p>
+                                </div>` + fetch;
+}
+
+function UpdateBox_1(data){
+    boxesContainer.innerHTML = "";
+    for(let i = 13; i>=0; i--){
+        updateBox_2(data.forecast.forecastday[i]);
+    }
+
+    boxesContainer.querySelectorAll(".box").forEach((box,index) => {
+        // box[0].classList.remove("glassItem")
+        // box[0].classList.add("glassItem_2")
+        box.addEventListener("click",()=>{
+        updateForecast(index);
+        boxSelectBorder();
+        box.classList.remove("glassItem")
+        box.classList.add("glassItem_2")
+        console.log(index);
+        })
+     });
+}
+function boxSelectBorder(){
+    boxesContainer.querySelectorAll(".box").forEach((box) => {
+        box.classList.add("glassItem")
+        box.classList.remove("glassItem_2")
+     });
 }
 
