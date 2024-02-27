@@ -82,7 +82,6 @@ function getWeather(url_){
         console.log(data);
         api_data = data;
         updateForecast(0);
-        // boxes[0].classList.remove("glassItem")
         loadingScreen.style.display = "none";
         allData.classList.remove("hidden");
     }).catch((error)=>{
@@ -206,16 +205,7 @@ function upadateHourWind(data){
     }
 }
 
-
-
-// boxesContainer.querySelectorAll(".box").forEach((i) => {
-//     i.addEventListener("click", () => {
-//        console.log("pressed");
-//     })
-// });
-
 function updateForecast(index){
-    // console.log(boxes[index]);
     var data = api_data.forecast.forecastday[index];
     updateForeTempData(data);
     upadateHourTemp(data);
@@ -259,8 +249,6 @@ function UpdateBox_1(data){
     }
 
     boxesContainer.querySelectorAll(".box").forEach((box,index) => {
-        // box[0].classList.remove("glassItem")
-        // box[0].classList.add("glassItem_2")
         box.addEventListener("click",()=>{
         updateForecast(index);
         boxSelectBorder();
