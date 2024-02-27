@@ -39,7 +39,7 @@
 
 
 body{
-    background: linear-gradient(160deg, rgb(32, 31, 31), rgb(10, 10, 10));
+    background: linear-gradient(160deg, rgba(3, 15, 91, 0.766), rgba(1, 32, 73, 0.925));
     min-height: 100dvh;
     display: flex;
     justify-content: center;
