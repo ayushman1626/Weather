@@ -21,7 +21,9 @@ var api_data = {}
 
 
 
-const key = "1c5f2edc6a0c4083a64155925240601"
+// const key = "1c5f2edc6a0c4083a64155925240601"
+const key = "312313bd6f05401b93063331242702"
+
 var lat;var lon;var url;
 
 function updateBox_2(data){    
@@ -231,13 +233,13 @@ function upadateHourWind(data){
 }
 
 
-var boxes = document.querySelectorAll(".box");
-boxes.forEach((box,index) => {
-    box.addEventListener("click",()=>{
-    updateForecast(index);
-    console.log(index);
-    })
- });
+// var boxes = document.querySelectorAll(".box");
+// boxes.forEach((box,index) => {
+//     box.addEventListener("click",()=>{
+//     updateForecast(index);
+//     console.log(index);
+//     })
+//  });
 
 function updateForecast(index){
     // console.log(boxes[index]);
